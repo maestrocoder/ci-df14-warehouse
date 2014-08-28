@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:sf="antlib:com.salesforce" default="sf" basedir=".">
+  <target name="Build">
+    <echo>Continuous Integration Build</echo>
+    <taskdef resource="net/sf/antcontrib/antlib.xml" />
+    <property environment="env" />
+    <echo>Branch: ${env.CIRCLE_BRANCH}</echo>
+    <property file="build.${env.CIRCLE_BRANCH}.properties" />
+    <echo>${build.cmd}</echo>
+    <antcall target="${build.cmd}" />
+  </target>
+  <target name="DeployAndCheckOnly">
+    <echo>Deploy Code CheckOnly in Org with username: ${sf.username}</echo>
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="${user.dir}/src" logType="Detail" checkOnly="${sf.checkOnly}" />
+  </target>
+  <target name="DeployAndRunAllTests">
+    <echo>Deploy and RunAllTests in Org with username: ${sf.username}</echo>
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="${user.dir}/src" logType="Detail" runallTests="${sf.runallTests}" />
+  </target>
+</project>
