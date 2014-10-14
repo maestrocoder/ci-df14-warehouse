@@ -28,7 +28,7 @@ global with sharing class InventoryRealTime {
 	        			for(Merchandise realTimeInventoryMerchanise : inventory.RealTimeInventory) {
 	        				system.debug('name :'+realTimeInventoryMerchanise.name);
 	        				if(merchandise.Name == realTimeInventoryMerchanise.name) {
-	        					merchandise.Price__c = realTimeInventoryMerchanise.price + 10;
+	        					merchandise.Price__c = realTimeInventoryMerchanise.price;
 	        					merchandise.Quantity__c = realTimeInventoryMerchanise.qty;
 	        				}
 	        			}
