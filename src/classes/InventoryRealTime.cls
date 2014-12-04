@@ -1,4 +1,13 @@
-public with sharing class InventoryRealTime {
+global with sharing class InventoryRealTime {
+
+	webservice static Integer WS_UpdateInventory()
+	{
+		Inventory inventory = UpdateInventory();
+		if(inventory != null && inventory.RealTimeInventory != null) {
+			return inventory.RealTimeInventory.size();
+		}
+		return 0;
+	}
 
 	public static Inventory UpdateInventory()
 	{
@@ -20,7 +29,7 @@ public with sharing class InventoryRealTime {
 	        				system.debug('name :'+realTimeInventoryMerchanise.name);
 	        				if(merchandise.Name == realTimeInventoryMerchanise.name) {
 	        					merchandise.Price__c = realTimeInventoryMerchanise.price;
-	        					merchandise.Quantity__c = realTimeInventoryMerchanise.qty;
+	        					merchandise.Quantity__c = realTimeInventoryMerchanise.qty + 1;
 	        				}
 	        			}
 	        		}

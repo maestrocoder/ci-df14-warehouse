@@ -3,7 +3,7 @@ private class InventoryRealTimeTest {
 	
 	@isTest static void test_UpdateInventory() {
 		
-		Merchandise__c merchandise1 = AddMerchandise('Desktop', 599.99, 100);
+		Merchandise__c merchandise1 = AddMerchandise('Desktop', 599.99, 150);
 		Merchandise__c merchandise2 = AddMerchandise('Server', 1999.99, 200);
 
 		Test.startTest();
